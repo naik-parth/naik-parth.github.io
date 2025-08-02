@@ -13,118 +13,143 @@
     }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #f4f7fa;
-      color: #333;
-      padding: 40px 20px;
+      background-color: #141414;
+      color: #fff;
+      padding: 0;
     }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
+    header {
+      background-color: #000;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .header {
-      text-align: center;
-      margin-bottom: 50px;
+    header h1 {
+      font-size: 1.8em;
+      color: #e50914;
     }
-    .header h1 {
-      font-size: 2.5em;
-      color: #2c3e50;
-    }
-    .header p {
-      font-size: 1.1em;
-      color: #555;
-    }
-    .contact a {
-      margin: 0 10px;
-      color: #3498db;
+    nav a {
+      color: #fff;
+      margin-left: 20px;
       text-decoration: none;
+      font-weight: 500;
+    }
+    .hero {
+      padding: 100px 40px 40px;
+      background: linear-gradient(to top, rgba(20,20,20,1), rgba(20,20,20,0.6)), url('https://wallpaperaccess.com/full/2703652.png') no-repeat center center/cover;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 2.8em;
+      color: #fff;
+    }
+    .hero p {
+      font-size: 1.2em;
+      margin-top: 10px;
     }
     .section {
-      margin-bottom: 50px;
+      padding: 40px;
     }
-    h2 {
-      font-size: 1.8em;
-      color: #2c3e50;
+    .section h2 {
+      color: #e50914;
+      font-size: 2em;
       margin-bottom: 20px;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 10px;
     }
-    .project {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background-color: #222;
       padding: 20px;
-      margin-bottom: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s;
     }
-    .project h3 {
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .card h3 {
+      color: #fff;
       margin-bottom: 10px;
-      color: #34495e;
     }
-    .project p {
-      margin-bottom: 5px;
+    .card p {
+      font-size: 0.95em;
+      color: #bbb;
     }
     .skills ul {
       list-style: none;
-      padding-left: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
     }
     .skills li {
-      background: #fff;
+      background: #333;
       padding: 10px 15px;
       border-radius: 6px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    .footer {
-      text-align: center;
-      margin-top: 60px;
-      color: #888;
       font-size: 0.9em;
+    }
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+      font-size: 0.85em;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>Parth Naik</h1>
-      <p>Data Analyst | Python • SQL • Tableau • Excel</p>
-      <div class="contact">
-        <a href="mailto:parthnaik@nyu.edu">Email</a>
-        <a href="https://linkedin.com/in/naikparth" target="_blank">LinkedIn</a>
-        <a href="https://github.com/naik-parth" target="_blank">GitHub</a>
-        <a href="resume.pdf" target="_blank">Resume</a>
+  <header>
+    <h1>Parth Naik</h1>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="mailto:parthnaik@nyu.edu">Contact</a>
+      <a href="resume.pdf" target="_blank">Resume</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2>Parth Naik</h2>
+    <p>Data Analyst | Python • SQL • Tableau • Excel</p>
+  </div>
+
+  <section class="section" id="projects">
+    <h2>Featured Projects</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>US-101 Vehicle Trajectories</h3>
+        <p>Analyzed 2.2M+ vehicle records to identify bottlenecks and driver behavior. Cut query time by 85% using BigQuery optimizations.</p>
+        <p><strong>Tools:</strong> Python, SQL, BigQuery</p>
+      </div>
+      <div class="card">
+        <h3>NYC Vision Zero Risk Platform</h3>
+        <p>Built FastAPI ML app for real-time traffic risk scoring. Monitored via Prometheus + Grafana, retrained weekly with Ray & MLflow.</p>
+        <p><strong>Tools:</strong> FastAPI, Kubernetes, MLflow</p>
       </div>
     </div>
+  </section>
 
-    <div class="section">
-      <h2>📊 Projects</h2>
-
-      <div class="project">
-        <h3>US-101 Vehicle Trajectories – Traffic Flow Analysis (NGSIM)</h3>
-        <p>Analyzed 2.2M+ vehicle records to identify traffic bottlenecks, lane usage patterns, and driver behavior. Reduced query latency by 85% with BigQuery optimization.</p>
-        <p><strong>Tools:</strong> BigQuery, Python, Pandas, SQL</p>
-      </div>
-
-      <div class="project">
-        <h3>NYC Vision Zero – Real-Time Risk Scoring Platform</h3>
-        <p>Developed a FastAPI service for traffic risk classification. Deployed on Kubernetes with Argo Workflows; enabled monitoring with Prometheus/Grafana and retraining with Ray + MLflow.</p>
-        <p><strong>Tools:</strong> FastAPI, Kubernetes, MLflow, Ray, Prometheus, Grafana</p>
-      </div>
-    </div>
-
-    <div class="section skills">
-      <h2>🧠 Skills</h2>
+  <section class="section" id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
       <ul>
-        <li><strong>Programming:</strong> Python, SQL, R</li>
-        <li><strong>Visualization:</strong> Tableau, Power BI, Matplotlib, Seaborn</li>
-        <li><strong>Data Handling:</strong> Pandas, NumPy, Excel, BigQuery</li>
-        <li><strong>Tools & Platforms:</strong> MLflow, Ray, Argo Workflows, Kubernetes, Git, Jupyter, VSCode</li>
+        <li>Python</li>
+        <li>SQL</li>
+        <li>Tableau</li>
+        <li>Power BI</li>
+        <li>Excel</li>
+        <li>BigQuery</li>
+        <li>MLflow</li>
+        <li>Ray</li>
+        <li>Kubernetes</li>
+        <li>FastAPI</li>
       </ul>
     </div>
+  </section>
 
-    <div class="footer">
-      &copy; 2025 Parth Naik. All rights reserved.
-    </div>
-  </div>
+  <footer>
+    &copy; 2025 Parth Naik. All rights reserved.
+  </footer>
 </body>
 </html>
