@@ -287,6 +287,32 @@
     border-left: 1px solid var(--rule);
     padding-left: 24px;
   }
+  .about-side .portrait {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+    margin-bottom: 12px;
+    border-radius: 2px;
+    filter: grayscale(8%) sepia(6%) contrast(1.02);
+    transition: filter .6s ease;
+  }
+  .about-side .portrait:hover {
+    filter: grayscale(0%) sepia(0%) contrast(1.02);
+  }
+  .about-side .portrait-caption {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
   .about-side dl {
     display: grid;
     gap: 18px;
@@ -557,17 +583,6 @@
   }
   footer .contact-grid a:hover { border-color: var(--accent-soft); }
 
-  footer .colophon {
-    margin-top: 60px;
-    display: flex;
-    justify-content: space-between;
-    font-family: var(--mono);
-    font-size: 10px;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-
   /* ============== ENTRANCE ANIMATIONS ============== */
   .fade-up {
     opacity: 0;
@@ -622,7 +637,6 @@
 
     .credentials { grid-template-columns: 1fr; }
     footer .contact-grid { grid-template-columns: repeat(2,1fr); }
-    footer .colophon { flex-direction: column; gap: 8px; }
   }
 </style>
 </head>
@@ -647,8 +661,7 @@
 <header class="hero">
   <div class="container">
     <div class="meta-row fade-up">
-      <span class="issue">No. 01 — Portfolio</span>
-      <span>New York City</span>
+      <span class="issue">New York City</span>
       <span>Data Analyst · Analytics Engineer</span>
     </div>
 
@@ -728,6 +741,11 @@
       </div>
 
       <aside class="about-side reveal">
+        <img src="headshot.jpg" alt="Parth Naik" class="portrait" />
+        <div class="portrait-caption">
+          <span>Parth Naik</span>
+          <span>NYC · 2026</span>
+        </div>
         <dl>
           <div>
             <dt>Location</dt>
@@ -1119,10 +1137,6 @@
       </div>
     </div>
 
-    <div class="colophon">
-      <span>© 2026 Parth Naik · Portfolio No. 01</span>
-      <span>Set in Instrument Serif &amp; Geist</span>
-    </div>
   </div>
 </footer>
 
