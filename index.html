@@ -1,435 +1,895 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Engineer | Portfolio</title>
+
+    <title>Business Intelligence Analyst | Portfolio</title>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
+
         /* Apple-esque CSS Reset & Variables */
+
         :root {
+
             --bg-color: #fbfbfd;
+
             --text-main: #1d1d1f;
+
             --text-muted: #86868b;
+
             --accent: #0066cc;
+
             --card-bg: #ffffff;
+
             --chart-bg: #f5f5f7;
+
         }
+
+
 
         * {
+
             margin: 0;
+
             padding: 0;
+
             box-sizing: border-box;
+
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
             -webkit-font-smoothing: antialiased;
+
         }
+
+
 
         body {
+
             background-color: var(--bg-color);
+
             color: var(--text-main);
+
             line-height: 1.5;
+
         }
+
+
 
         /* Hero Section */
+
         .hero {
+
             height: 60vh;
+
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
+
             align-items: center;
+
             text-align: center;
+
             padding: 0 20px;
+
         }
+
+
 
         .hero h1 {
+
             font-size: 4rem;
+
             font-weight: 700;
+
             letter-spacing: -0.05em;
+
             margin-bottom: 10px;
+
         }
+
+
 
         .hero h2 {
+
             font-size: 1.5rem;
+
             font-weight: 400;
+
             color: var(--text-muted);
+
             margin-bottom: 30px;
+
         }
+
+
 
         /* About Me Section */
+
         .about-section {
+
             max-width: 900px;
+
             margin: 0 auto 100px auto;
+
             padding: 40px;
+
             background-color: var(--card-bg);
+
             border-radius: 20px;
+
             box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+
             display: flex;
+
             align-items: center;
+
             gap: 40px;
+
             opacity: 0;
+
             transform: translateY(30px);
+
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
         }
+
+
 
         .about-section.visible {
+
             opacity: 1;
+
             transform: translateY(0);
+
         }
+
+
 
         /* The embedded local profile picture */
+
         .profile-pic {
+
             width: 150px;
+
             height: 150px;
+
             border-radius: 50%;
+
             background-image: url('profile.jpg'); 
+
             background-size: cover;
+
             background-position: center;
+
             flex-shrink: 0;
+
             box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+
         }
+
+
 
         .about-content h3 {
+
             font-size: 1.8rem;
+
             font-weight: 600;
+
             margin-bottom: 15px;
+
             letter-spacing: -0.02em;
+
         }
+
+
 
         .about-content p {
+
             color: var(--text-muted);
+
             font-size: 1.1rem;
+
             line-height: 1.6;
+
             margin-bottom: 20px;
+
         }
+
+
 
         .social-links {
+
             display: flex;
+
             gap: 15px;
+
         }
+
+
 
         .social-links a {
+
             text-decoration: none;
+
             color: var(--accent);
+
             font-weight: 500;
+
             font-size: 1rem;
+
             padding: 8px 16px;
+
             border-radius: 20px;
+
             background-color: rgba(0, 102, 204, 0.1);
+
             transition: background-color 0.2s;
+
         }
+
+
 
         .social-links a:hover {
+
             background-color: rgba(0, 102, 204, 0.2);
+
         }
+
+
 
         /* Project Layout */
+
         .project-section {
+
             max-width: 1200px;
+
             margin: 0 auto 150px auto;
+
             padding: 0 40px;
+
             opacity: 0; 
+
             transform: translateY(30px);
+
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
         }
+
+
 
         .project-section.visible {
+
             opacity: 1;
+
             transform: translateY(0);
+
         }
+
+
 
         .project-header {
+
             text-align: center;
+
             margin-bottom: 60px;
+
         }
+
+
 
         .project-header h3 {
+
             font-size: 0.9rem;
+
             text-transform: uppercase;
+
             letter-spacing: 0.1em;
+
             color: var(--text-muted);
+
             margin-bottom: 10px;
+
         }
+
+
 
         .project-header h2 {
+
             font-size: 3rem;
+
             font-weight: 700;
+
             letter-spacing: -0.03em;
+
             margin-bottom: 20px;
+
         }
+
+
 
         /* The "Impact" Card */
+
         .impact-card {
+
             background-color: var(--card-bg);
+
             border-radius: 20px;
+
             padding: 40px;
+
             box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+
             margin-bottom: 40px;
+
             display: flex;
+
             gap: 40px;
+
         }
+
+
 
         .impact-col {
+
             flex: 1;
+
         }
+
+
 
         .impact-col h4 {
+
             font-size: 1.2rem;
+
             margin-bottom: 15px;
+
             color: var(--text-main);
+
         }
+
+
 
         .impact-col p {
+
             color: var(--text-muted);
+
             font-size: 1.1rem;
+
             line-height: 1.6;
+
         }
+
+
 
         .highlight {
+
             color: var(--accent);
+
             font-weight: 600;
+
         }
+
+
 
         /* Interactive Viz Container */
+
         .chart-container {
+
             width: 100%;
+
             background-color: var(--chart-bg);
+
             border-radius: 20px;
+
             padding: 40px;
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
+
             box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
+
         }
+
+
 
         .chart-wrapper {
+
             position: relative;
+
             height: 400px;
+
             width: 100%;
+
             max-width: 900px;
+
         }
+
+
 
         /* Footer */
+
         footer {
+
             text-align: center;
+
             padding: 60px 20px;
+
             color: var(--text-muted);
+
             font-size: 0.9rem;
+
             border-top: 1px solid #e5e5ea;
+
         }
+
+
 
         @media (max-width: 768px) {
+
             .hero h1 { font-size: 3rem; }
+
             .about-section { flex-direction: column; text-align: center; }
+
             .impact-card { flex-direction: column; }
+
             .chart-wrapper { height: 300px; }
+
             .social-links { justify-content: center; }
+
         }
+
     </style>
+
 </head>
+
 <body>
 
+
+
     <section class="hero">
+
         <h1>Parth Naik</h1>
-        <h2>AI Engineer</h2>
+
+        <h2>Business Intelligence Analyst</h2>
+
     </section>
+
+
 
     <section class="about-section visible">
+
         <div class="profile-pic"></div>
+
         <div class="about-content">
-            <h3>Architecting intelligence at scale.</h3>
-            <p>I am an AI Engineer specializing in building robust machine learning pipelines and leveraging big data to solve complex business challenges. With a deep technical foundation in Python, Spark, and MLOps, I deploy scalable models that drive actionable insights for everything from supply chain logistics to consumer sentiment.</p>
+
+            <h3>Bridging the gap between raw data and executive strategy.</h3>
+
+            <p>I am a Business Intelligence Analyst specializing in transforming complex cloud infrastructure (AWS, Google BigQuery) into actionable business insights. With a deep technical foundation in SQL, Python, and Tableau, I build the analytics pipelines that drive product experimentation, supply chain efficiency, and marketing growth.</p>
+
             <div class="social-links">
+
                 <a href="https://github.com/naik-parth" target="_blank">GitHub</a>
+
                 <a href="https://linkedin.com/in/naikparth" target="_blank">LinkedIn</a>
+
                 <a href="mailto:parthnaik737@gmail.com">Email Me</a>
+
             </div>
+
         </div>
+
     </section>
+
+
 
     <section class="project-section">
+
         <div class="project-header">
-            <h3>Machine Learning Operations</h3>
-            <h2>NYC Vision Zero MLOps</h2>
-        </div>
-        
-        <div class="impact-card">
-            <div class="impact-col">
-                <h4>The Situation</h4>
-                <p>Vision Zero hopes to reduce the amount of general vehicular related incidents. To support this, there was a need to evaluate historical and streaming data to determine risk.</p>
-            </div>
-            <div class="impact-col">
-                <h4>The Action</h4>
-                <p>Created an MLOps pipeline to classify the risk of possible incidents on any given day. Engineered a RandomForestClassifier model integrated with Kubernetes, MLFlow, and a Ray Cluster, served via a FastAPI REST endpoint.</p>
-            </div>
-            <div class="impact-col">
-                <h4>The Impact</h4>
-                <p>Equipped groups like the NYPD and NYCDOT to <span class="highlight">better predict potential incidents based on existing daily conditions</span>, ultimately aiming to enable faster response times and safer roads.</p>
-            </div>
+
+            <h3>Growth & Marketing Analytics</h3>
+
+            <h2>Apple App Store Optimization</h2>
+
         </div>
 
-        <div class="chart-container">
-            <div class="chart-wrapper">
-                <canvas id="visionZeroChart"></canvas>
+        
+
+        <div class="impact-card">
+
+            <div class="impact-col">
+
+                <h4>The Situation</h4>
+
+                <p>An unknown volume of user churn was occurring during the critical trial-to-paid subscription phase.</p>
+
             </div>
+
+            <div class="impact-col">
+
+                <h4>The Action</h4>
+
+                <p>Engineered a Google BigQuery pipeline and executed advanced SQL window functions to track user session behavior over time.</p>
+
+            </div>
+
+            <div class="impact-col">
+
+                <h4>The Impact</h4>
+
+                <p>Identified a <span class="highlight">15% drop-off in Day-7 user activation</span>, empowering product marketing to optimize the onboarding funnel.</p>
+
+            </div>
+
         </div>
+
+
+
+        <div class="chart-container">
+
+            <div class="chart-wrapper">
+
+                <canvas id="appleChart"></canvas>
+
+            </div>
+
+        </div>
+
     </section>
+
+
 
     <section class="project-section">
+
         <div class="project-header">
-            <h3>Big Data Analytics & NLP</h3>
-            <h2>TrustGauge: Amazon Reviews Analyzer</h2>
-        </div>
-        
-        <div class="impact-card">
-            <div class="impact-col">
-                <h4>The Situation</h4>
-                <p>Consumers face difficulties gauging the overall sentiment and reliability of products, as many individual reviews may be biased, inconsistent, or manipulated.</p>
-            </div>
-            <div class="impact-col">
-                <h4>The Action</h4>
-                <p>Developed a comprehensive web application utilizing Apache Spark for large-scale data ingestion and spaCy alongside BERT models for natural language processing and feature extraction.</p>
-            </div>
-            <div class="impact-col">
-                <h4>The Impact</h4>
-                <p>Delivered a system that aggregates and analyzes millions of reviews to <span class="highlight">provide a reliable product confidence score</span>, helping consumers make data-driven purchasing decisions.</p>
-            </div>
+
+            <h3>Operations & Data Engineering</h3>
+
+            <h2>Amazon Prime Supply Chain</h2>
+
         </div>
 
-        <div class="chart-container">
-            <div class="chart-wrapper">
-                <canvas id="trustGaugeChart"></canvas>
+        
+
+        <div class="impact-card">
+
+            <div class="impact-col">
+
+                <h4>The Situation</h4>
+
+                <p>Midwest Prime deliveries were missing their 2-day SLA promise due to untracked operational bottlenecks.</p>
+
             </div>
+
+            <div class="impact-col">
+
+                <h4>The Action</h4>
+
+                <p>Architected an AWS Redshift pipeline, using PostgreSQL timestamp-delta math to analyze millions of event-driven microservice logs.</p>
+
+            </div>
+
+            <div class="impact-col">
+
+                <h4>The Impact</h4>
+
+                <p>Isolated a <span class="highlight">24-hour fulfillment bottleneck at MDW2</span>, driving the executive decision to divert regional logistics volume.</p>
+
+            </div>
+
         </div>
+
+
+
+        <div class="chart-container">
+
+            <div class="chart-wrapper">
+
+                <canvas id="amazonChart"></canvas>
+
+            </div>
+
+        </div>
+
     </section>
+
+
 
     <section class="project-section">
+
         <div class="project-header">
-            <h3>Predictive Modeling & Strategy</h3>
-            <h2>US Airline Flight Delay Analysis</h2>
-        </div>
-        
-        <div class="impact-card">
-            <div class="impact-col">
-                <h4>The Situation</h4>
-                <p>With 20% of U.S. flights arriving late, airlines face $30B in annual losses due to crew overtime, repositioning, and missed connections.</p>
-            </div>
-            <div class="impact-col">
-                <h4>The Action</h4>
-                <p>Processed over 5 million flight records to build a predictive model evaluating the likelihood of a flight being delayed by more than 15 minutes, utilizing a Decision Tree classifier.</p>
-            </div>
-            <div class="impact-col">
-                <h4>The Impact</h4>
-                <p>The model achieved a <span class="highlight">lift above 3.7 in the top 10% of predicted delay risk flights</span>, allowing operations teams to proactively optimize aircraft and crew allocation.</p>
-            </div>
+
+            <h3>Product & Experimentation</h3>
+
+            <h2>Netflix UI A/B Testing</h2>
+
         </div>
 
-        <div class="chart-container">
-            <div class="chart-wrapper">
-                <canvas id="flightDelayChart"></canvas>
+        
+
+        <div class="impact-card">
+
+            <div class="impact-col">
+
+                <h4>The Situation</h4>
+
+                <p>Design and Engineering debated whether a new auto-playing trailer feature would drive engagement or increase app abandonment.</p>
+
             </div>
+
+            <div class="impact-col">
+
+                <h4>The Action</h4>
+
+                <p>Built a MySQL multi-metric funnel analyzing 15,000 randomized sessions and calculated p-values using Python/SciPy.</p>
+
+            </div>
+
+            <div class="impact-col">
+
+                <h4>The Recommendation</h4>
+
+                <p>Proved a <span class="highlight">10-minute engagement lift was offset by a 10% friction spike</span>. Recommended halting deployment.</p>
+
+            </div>
+
         </div>
+
+
+
+        <div class="chart-container">
+
+            <div class="chart-wrapper">
+
+                <canvas id="netflixChart"></canvas>
+
+            </div>
+
+        </div>
+
     </section>
+
+
 
     <footer>
+
         <p>Built for Data. Engineered for Impact. © 2026</p>
+
     </footer>
 
+
+
     <script>
+
         // Global Chart Defaults for Apple Aesthetic
+
         Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
+
         Chart.defaults.color = '#86868b';
+
         Chart.defaults.scale.grid.color = 'rgba(0,0,0,0.05)';
+
         Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(29, 29, 31, 0.9)';
+
         Chart.defaults.plugins.tooltip.padding = 12;
+
         Chart.defaults.plugins.tooltip.cornerRadius = 8;
 
-        // 1. NYC Vision Zero Chart (Dummy Metrics for Model Performance)
-        const ctxVision = document.getElementById('visionZeroChart').getContext('2d');
-        new Chart(ctxVision, {
-            type: 'bar',
+
+
+        // 1. Apple App Store Chart
+
+        const ctxApple = document.getElementById('appleChart').getContext('2d');
+
+        new Chart(ctxApple, {
+
+            type: 'line',
+
             data: {
-                labels: ['Accuracy', 'Precision', 'Recall', 'F1-Score'],
+
+                labels: ['Day 1', 'Day 3', 'Day 5', 'Day 7', 'Day 14', 'Day 30'],
+
                 datasets: [{
-                    label: 'Random Forest Model Evaluation',
-                    data: [89, 84, 82, 83],
-                    backgroundColor: '#0066cc',
-                    borderRadius: 6
+
+                    label: 'User Retention (%)',
+
+                    data: [100, 88, 85, 68, 65, 62],
+
+                    borderColor: '#0066cc',
+
+                    backgroundColor: 'rgba(0, 102, 204, 0.1)',
+
+                    borderWidth: 3,
+
+                    tension: 0.4,
+
+                    fill: true,
+
+                    pointBackgroundColor: '#fff',
+
+                    pointBorderColor: '#0066cc',
+
+                    pointBorderWidth: 2,
+
+                    pointRadius: 5,
+
+                    pointHoverRadius: 7
+
                 }]
+
             },
+
             options: {
+
                 responsive: true,
+
                 maintainAspectRatio: false,
+
                 plugins: {
+
                     legend: { display: false },
-                    title: { display: true, text: 'Offline Evaluation Metrics (%)', color: '#1d1d1f', font: {size: 16, weight: 600} }
+
+                    title: { display: true, text: 'Trial-to-Paid Subscription Funnel', color: '#1d1d1f', font: {size: 16, weight: 600} }
+
                 },
+
                 scales: {
-                    y: { min: 50, max: 100, ticks: { callback: function(value) { return value + '%' } } }
+
+                    y: { min: 40, max: 100, ticks: { callback: function(value) { return value + '%' } } }
+
                 }
+
             }
+
         });
 
-        // 2. TrustGauge Chart (Simulated Sentiment Distribution)
-        const ctxTrust = document.getElementById('trustGaugeChart').getContext('2d');
-        new Chart(ctxTrust, {
-            type: 'doughnut',
+
+
+        // 2. Amazon Prime Chart
+
+        const ctxAmazon = document.getElementById('amazonChart').getContext('2d');
+
+        new Chart(ctxAmazon, {
+
+            type: 'bar',
+
             data: {
-                labels: ['Positive Sentiment', 'Neutral', 'Negative Sentiment'],
-                datasets: [{
-                    data: [65, 20, 15],
-                    backgroundColor: ['#34c759', '#86868b', '#ff3b30'],
-                    borderWidth: 0,
-                    hoverOffset: 4
-                }]
+
+                labels: ['ORD1 (Chicago)', 'IND1 (Indianapolis)', 'CVG3 (Cincinnati)', 'MDW2 (Joliet)'],
+
+                datasets: [
+
+                    { label: 'Pick Hours', data: [2.5, 3.1, 2.8, 3.5], backgroundColor: '#34c759', borderRadius: 4 },
+
+                    { label: 'Pack Hours', data: [3.2, 4.0, 3.8, 24.6], backgroundColor: '#ff3b30', borderRadius: 4 }
+
+                ]
+
             },
+
             options: {
+
                 responsive: true,
+
                 maintainAspectRatio: false,
-                cutout: '70%',
+
+                scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'Average Hours' } } },
+
                 plugins: {
-                    title: { display: true, text: 'Aggregated Product Sentiment Distribution', color: '#1d1d1f', font: {size: 16, weight: 600} }
+
+                    title: { display: true, text: 'Fulfillment Center Processing Time (SLA Bottleneck)', color: '#1d1d1f', font: {size: 16, weight: 600} }
+
                 }
+
             }
+
         });
 
-        // 3. Flight Delay Model Lift Chart
-        const ctxDelay = document.getElementById('flightDelayChart').getContext('2d');
-        new Chart(ctxDelay, {
+
+
+        // 3. Netflix A/B Test Chart
+
+        const ctxNetflix = document.getElementById('netflixChart').getContext('2d');
+
+        new Chart(ctxNetflix, {
+
             type: 'bar',
+
             data: {
-                labels: ['Decision Tree', 'KNN', 'Logistic Regression'],
-                datasets: [{
-                    label: 'Model AUC Score',
-                    data: [0.883, 0.660, 0.510], // Sourced directly from project evaluation table 
-                    backgroundColor: ['#0066cc', '#86868b', '#d1d1d6'],
-                    borderRadius: 6
-                }]
+
+                labels: ['A (Control: Static Image)', 'B (Treatment: Auto-Play)'],
+
+                datasets: [
+
+                    {
+
+                        label: 'Play Conversion Rate (%)',
+
+                        data: [55, 68],
+
+                        backgroundColor: '#0066cc',
+
+                        borderRadius: 6
+
+                    },
+
+                    {
+
+                        label: 'Bounce Rate / Friction (%)',
+
+                        data: [12, 22],
+
+                        backgroundColor: '#86868b',
+
+                        borderRadius: 6
+
+                    }
+
+                ]
+
             },
+
             options: {
+
                 responsive: true,
+
                 maintainAspectRatio: false,
+
                 plugins: {
-                    legend: { display: false },
-                    title: { display: true, text: 'Classification Model Performance Comparison (AUC)', color: '#1d1d1f', font: {size: 16, weight: 600} }
+
+                    title: { display: true, text: 'Metrics in Tension: Engagement vs. Friction', color: '#1d1d1f', font: {size: 16, weight: 600} }
+
                 },
+
                 scales: {
-                    y: { min: 0, max: 1.0 }
+
+                    y: { min: 0, max: 80, ticks: { callback: function(value) { return value + '%' } } }
+
                 }
+
             }
+
         });
+
+
 
         // Scroll Animation Observer
+
         const observer = new IntersectionObserver((entries) => {
+
             entries.forEach((entry) => {
+
                 if (entry.isIntersecting) {
+
                     entry.target.classList.add('visible');
+
                 }
+
             });
+
         }, { threshold: 0.1 });
 
+
+
         document.querySelectorAll('.project-section, .about-section').forEach((section) => {
+
             observer.observe(section);
+
         });
+
     </script>
+
 </body>
+
 </html>
